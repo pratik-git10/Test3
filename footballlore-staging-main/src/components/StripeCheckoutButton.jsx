@@ -14,7 +14,6 @@ function StripeButtonInner() {
   const handleClick = async () => {
     setLoading(true);
     setError('');
-    // For demo, use Stripe's test mode redirect
     try {
       const { error } = await stripe.redirectToCheckout({
         lineItems: [{ price: 'price_1N8Qw2JvQw2JvQw2JvQw2JvQw', quantity: 1 }], // Replace with your test price ID
@@ -51,4 +50,4 @@ export default function StripeCheckoutButton() {
       <StripeButtonInner />
     </Elements>
   );
-} 
+}

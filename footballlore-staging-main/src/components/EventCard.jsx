@@ -14,9 +14,13 @@ export default function EventCard({ title, date, location, onRSVP }) {
         <div className="event-date">{formatEventDate(date)}</div>
         <div className="event-location">{location}</div>
       </div>
-      <button className="event-rsvp-btn" onClick={onRSVP}>
+      <button
+        className="event-rsvp-btn"
+        onClick={onRSVP}
+        aria-label={`RSVP for ${title} on ${formatEventDate(date)} at ${location}`}
+      >
         RSVP
       </button>
     </div>
   );
-} 
+}

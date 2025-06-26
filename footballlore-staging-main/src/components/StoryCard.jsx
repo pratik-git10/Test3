@@ -12,7 +12,18 @@ export default function StoryCard({ id, title, snippet, image, mostViewed }) {
       <div className="story-content">
         <h3>{title}</h3>
         <p>{snippet}</p>
-        <div className="read-more" onClick={() => navigate(`/stories/${id}`)}>
+        <div
+          className="read-more"
+          onClick={() => navigate(`/stories/${id}`)}
+          tabIndex={0}
+          role="button"
+          aria-label={`Read more about ${title}`}
+          onKeyDown={e => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              navigate(`/stories/${id}`);
+            }
+          }}
+        >
           Read More →
         </div>
       </div>

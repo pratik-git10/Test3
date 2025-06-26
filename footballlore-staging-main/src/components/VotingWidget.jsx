@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { getStoryVotes, postStoryVote } from '../api/mockApi';
-import './styles/VotingWidget.css'; // CSS for this specific widget
+import './styles/VotingWidget.css';
 
 const VotingWidget = ({ storyId, userEmail }) => {
     const [votes, setVotes] = useState(0);
-    const [isVoted, setIsVoted] = useState(false); // Has the user voted in this session?
-    const [isLoading, setIsLoading] = useState(true); // Is data being fetched?
+    const [isVoted, setIsVoted] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState('');
 
-    // ✅ NEW: Function to simulate a boost by manually increasing the vote count
     const handleBoost = () => {
-        const boostAmount = 10; // Simulate a $5 boost = +10 votes
+        const boostAmount = 10;
         setVotes(prev => prev + boostAmount);
     };
 
-    // Function to fetch the current vote count from the API
     const fetchVoteCount = async () => {
         try {
             setError('');
@@ -31,14 +29,13 @@ const VotingWidget = ({ storyId, userEmail }) => {
         fetchVoteCount();
     }, [storyId]);
 
-    // Function to handle the vote button click
     const handleVote = async () => {
         setIsLoading(true);
         setError('');
         try {
             await postStoryVote({ storyId, email: userEmail });
             setIsVoted(true);
-            fetchVoteCount(); // Refresh vote count after voting
+            fetchVoteCount();
         } catch (err) {
             setError('Vote failed. You may have already voted.');
             setIsLoading(false);
@@ -48,27 +45,25 @@ const VotingWidget = ({ storyId, userEmail }) => {
     return (
         <div className="voting-widget-container">
             <h3 className="widget-title">Community Votes</h3>
-            <div className="vote-count">
+            <div className="vote-count" aria-live="polite" aria-label={`Current vote count is ${votes}`}>
                 {isLoading && votes === 0 ? '...' : votes}
             </div>
-
             <button
                 onClick={handleVote}
                 disabled={isLoading || isVoted}
                 className="btn btn-ghost"
+                aria-label={isVoted ? 'You have voted for this tale' : 'Vote for this tale'}
             >
                 {isVoted ? 'Voted!' : 'Vote for This Tale'}
             </button>
-
-            {/* ✅ OPTIONAL: Test button to simulate a boost */}
             <button
                 onClick={handleBoost}
                 className="btn btn-secondary"
                 style={{ marginTop: '10px' }}
+                aria-label="Simulate a boost (test only)"
             >
                 💸 Simulate Boost
             </button>
-
             {error && <p className="widget-error">{error}</p>}
         </div>
     );
