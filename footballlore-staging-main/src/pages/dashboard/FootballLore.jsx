@@ -39,7 +39,8 @@ const FootballLore = () => {
     );
   }
 
-  if (loading) return <p>Loading...</p>;
+  if (loading)
+    return <p className="flex justify-center items-center my-10">Loading...</p>;
 
   return (
     <>
