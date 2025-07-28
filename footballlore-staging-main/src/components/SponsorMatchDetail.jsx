@@ -15,15 +15,18 @@ const SponsorMatchPanel = ({ matchId }) => {
     setIsSubmitting(true);
     const toastId = toast.loading("Processing sponsorship...");
     try {
-      const response = await fetch(`http://localhost:5000/api/match-sponsor`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          matchId: matchId,
-          partnerName: partnerName,
-          contactEmail: contactEmail,
-        }),
-      });
+      const response = await fetch(
+        `https://backend-rouge-gamma-19.vercel.app/api/match-sponsor`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            matchId: matchId,
+            partnerName: partnerName,
+            contactEmail: contactEmail,
+          }),
+        }
+      );
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.message || "Sponsorship failed.");

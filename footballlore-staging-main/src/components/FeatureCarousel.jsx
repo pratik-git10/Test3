@@ -5,7 +5,7 @@ const FeaturedCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/featured-stories")
+    fetch("https://backend-rouge-gamma-19.vercel.app/api/featured-stories")
       .then((res) => res.json())
       .then((data) => setStories(data))
       .catch((err) => console.error("Failed to load stories", err));

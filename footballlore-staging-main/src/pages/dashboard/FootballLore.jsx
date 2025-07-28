@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "../../components/styles/FootballLore.css"; // assume custom styling here
 
-const API_BASE = "http://localhost:5000/api";
+const API_BASE = "https://backend-rouge-gamma-19.vercel.app";
 
 const FootballLore = () => {
   const [stories, setStories] = useState([]);
