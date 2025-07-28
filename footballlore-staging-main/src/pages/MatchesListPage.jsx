@@ -1,4 +1,4 @@
-import { Link as RouterLink } from "react-router-dom"; // Renamed to avoid conflict
+import { Link as RouterLink } from "react-router-dom";
 import { mockMatches } from "../data/matches";
 
 const MatchesListPage = () => {

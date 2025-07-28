@@ -4,7 +4,6 @@ import { mockMatches } from "../data/matches";
 
 const MatchDetailPage = () => {
   const { matchId } = useParams();
-  // In a real app, you would fetch match details based on the ID
   const match = mockMatches.find((m) => m.id === matchId) || {
     name: "Match not found",
     description: "",
@@ -20,7 +19,6 @@ const MatchDetailPage = () => {
           <p className="font-roboto text-lg text-gray-600 mt-4">
             {match.description}
           </p>
-          {/* You could display more detailed match info here */}
         </div>
         <div className="lg:col-span-1">
           <SponsorMatchPanel matchId={matchId} />
